@@ -87,12 +87,12 @@ def recrear(objetos, contornos, imagen_original, ruta_salida):
             puntos = contorno.astype(np.int32)
             cv2.fillPoly(mascara, [puntos], 1)
             canvas[mascara == 1] = color
-            cv2.polylines(canvas, [puntos], isClosed=True, color=(0, 0, 0), thickness=2, lineType=cv2.LINE_AA)
+            cv2.polylines(canvas, [puntos], isClosed=True, color=(0, 0, 0), thickness=1, lineType=cv2.LINE_AA)
         else:
             x1, y1, x2, y2 = int(o["x1"]), int(o["y1"]), int(o["x2"]), int(o["y2"])
             cv2.rectangle(mascara, (x1, y1), (x2, y2), 1, thickness=-1)
             canvas[mascara == 1] = color
-            cv2.rectangle(canvas, (x1, y1), (x2, y2), (0, 0, 0), thickness=2)
+            cv2.rectangle(canvas, (x1, y1), (x2, y2), (0, 0, 0), thickness=1)
 
         cx, cy = int(o["cx"]), int(o["cy"])
         cv2.putText(canvas, str(o["clase"]), (cx - 30, cy),
